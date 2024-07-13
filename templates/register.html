@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        Absolute units
+            px (pixels): Đơn vị tuyệt đối, tương ứng với một điểm ảnh trên màn hình.
+            cm (centimeters), mm (millimeters), in (inches), pt (points), pc (picas): Đơn vị độ dài vật lý.
+
+        Relative units:
+            % (percentage): Đơn vị tương đối so với giá trị của thành phần cha.
+            em: Đơn vị tương đối so với font-size của phần tử hiện tại.
+            rem: Đơn vị tương đối so với font-size của phần tử gốc (thường là <html>).
+            vw (viewport width), vh (viewport height): Đơn vị tương đối so với kích thước viewport.
+            vmin, vmax: Đơn vị tương đối so với chiều nhỏ/lớn nhất của viewport.
+
+        */
+
+        :root {
+            --gradient: linear-gradient(180deg,
+                    rgba(45, 112, 1253, 0.73) 0%,
+                    #163e92 100%);
+           
+        }
+
+        /* reset css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 20px;
+        }
+
+        body {
+            background: var(--gradient);
+        }
+
+        #contain {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #login-main {
+            width: 478px;
+            height: 560px;
+            padding: 35px 25px;
+            background-color: white;
+            border-style: solid;
+            border-width: 0px;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.15) 0px 4px 10px 0px;
+        }
+
+        .login-box h4 {
+            position: relative;
+            margin-bottom: calc(1rem);
+            font-size: 30px;
+            line-height: 30px;
+        }
+
+        /* username css  */
+        .login-box form #username {
+            position: relative;
+            margin-bottom: calc(1rem);
+            height: 50px;
+
+        }
+
+        .login-box form #username input {
+            border: 2px solid rgb(101, 104, 107);
+            border-radius: 5px;
+            padding: 1px 17px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .login-box form #username input:focus {
+            border: 2px solid rgb(9, 104, 199);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        /* email css */
+        .login-box form #email {
+            position: relative;
+            margin-bottom: calc(1rem);
+            height: 50px;
+        }
+
+        .login-box form #email input {
+            border: 2px solid rgb(101, 104, 107);
+            border-radius: 5px;
+            padding: 1px 17px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .login-box form #email input:focus {
+            border: 2px solid rgb(9, 104, 199);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        /* password css */
+        .login-box form #password {
+            position: relative;
+            margin-bottom: calc(1rem);
+            height: 50px;
+        }
+
+        .login-box form #password input {
+            border: 2px solid rgb(101, 104, 107);
+            border-radius: 5px;
+            padding: 1px 17px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .login-box form #password input:focus {
+            border: 2px solid rgb(9, 104, 199);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        /* note check  */
+        #note-check {
+            position: relative;
+            margin-bottom: calc(1rem);
+            display: flex;
+            height: 40px;
+
+        }
+
+        #rec-check {
+            height: 20px;
+            width: 20px;
+        }
+
+        #rec-check input {
+            width: 20px;
+            height: 20px;
+        }
+
+        #check-lable {
+            height: 40px;
+            padding: 0px 0px 0px 12px;
+        }
+
+        #check-lable label {
+            font-size: 17px;
+        }
+
+        /* Button CSS */
+        .login-box form button {
+            position: relative;
+            margin-bottom: calc(1rem);
+            background-color: rgb(44 49 207);
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            height: 50px;
+            font-weight: bold;
+            color: white
+        }
+
+        .login-box form button:hover {
+            background-color: rgb(75, 29, 117);
+        }
+
+        /* auto-note CSS*/
+        .login-box form #auto-note {
+            position: relative;
+            margin-bottom: calc(1rem);
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* app-icon CSS */
+        .login-box form #images-app {
+            display: flex;
+            height: 55px;
+            background-color: white;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box form #images-app .icon-image {
+            display: flex;
+            width: 55px;
+            height: 55px;
+            background-color: white;
+            margin-right: 20px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border-width: 2px;
+            border-style: solid;
+        }
+
+        .login-box form #images-app #github-icon {
+            margin-right: 0px;
+            border-color: rgb(44, 43, 43);
+            
+        }
+
+        .login-box form #images-app #windows-icon {
+            border-color: rgb(8, 33, 134);
+            
+        }
+
+        .login-box form #images-app #google-icon {
+            border-color: rgb(164, 4, 4);
+            
+        }
+
+        .login-box form #images-app .icon-image img {
+            width: 25px;
+            height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contain">
+        <div id="login-main">
+
+            <div class="login-box">
+
+                <h4 id="title">Bắt Đầu Ngay</h4>
+                <form method="POST" action="{{ url_for('handle_post') }}">
+                    <div id="username">
+                        <input type="text" class="" name="username" placeholder="Username">
+                    </div>
+                    <div id="email">
+                        <input type="text" name="email" placeholder="Email">
+                    </div>
+                    <div id="password">
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+
+                    <div id="note-check">
+                        <div id="rec-check">
+                            <input type="checkbox" id="check-button" name="check_data" value="True">
+                        </div>
+
+                        <div id="check-lable">
+                            <label for="check_data"> Tôi đồng ý chia sẻ thông tin và đồng ý với Chính sách bảo mật dữ
+                                liệu cá nhân</label>
+                        </div>
+                    </div>
+
+                    <button type="submit">Đăng Ký</button>
+
+                    <div id="auto-note">hoặc sử dụng tài khoản khác</div>
+
+                    <div id="images-app">
+                        <div class="icon-image" id="windows-icon">
+                            <img src="https://codelearn.io/images/windows.svg" alt="windows">
+                        </div>
+                        <div class="icon-image" id="google-icon">
+                            <img src="https://codelearn.io/images/google.svg" alt="google">
+                        </div>
+                        <div class="icon-image" id="github-icon">
+                            <img src="https://codelearn.io/images/github.svg" alt="github">
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
