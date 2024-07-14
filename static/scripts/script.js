@@ -22,6 +22,19 @@ document.addEventListener("DOMContentLoaded", function () {
 function addTask() {
   const newTask = todoInput.value.trim();
   if (newTask !== "") {
+    fetch("/add_task", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ text: newTask })
+    })
+     .then(response => response.json())
+     .then(data => {
+      // Xử lý dữ liệu trả về
+      console.log(data);
+    })
+    console.log("addTask_js")
     todo.push({ text: newTask, disabled: false });
     saveToLocalStorage();
     todoInput.value = "";

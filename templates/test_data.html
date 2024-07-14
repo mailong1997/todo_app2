@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hiển thị dữ liệu MongoDB</title>
+</head>
+<body>
+    <h1>Dữ liệu trong MongoDB</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Mô tả</th>
+                <!-- Thêm các cột tương ứng với các trường trong tài liệu -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for document in documents %}
+            <tr>
+                <td>{{ document['_id'] }}</td>
+                <td>{{ document['text'] }}</td>
+                <td>{{ document['disabled'] }}</td>
+                <!-- Hiển thị các trường khác tương ứng với tài liệu -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
