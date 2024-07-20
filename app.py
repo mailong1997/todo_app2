@@ -1,6 +1,6 @@
 # app.py
 
-from flask import Flask, render_template, request, redirect, session, jsonify
+from flask import Flask, render_template, request, redirect, session, jsonify, url_for
 import pymongo
 from bson.objectid import ObjectId
 #=====================================================================
@@ -19,9 +19,25 @@ except Exception:
 
 mydb = client["mydatabase"]
 mycol = mydb["todolist"]
-print("mycol: ", mycol)
+mycol_2 = mydb["user_data"]
+print("mycol_2: ", mycol_2)
+
+todo_list = []
+users = {}
+
 for x in mycol.find():
-    print(x)
+    todo_list.append(x)
+
+for x in mycol_2.find():
+	print(x["user"])  # trả về dic
+	print(x["password"])
+	user = x["user"]
+	password = x["password"]
+    # user_value.append(x)
+	# lấy dữ liệu từ x thêm vào user_value
+	users.update({user:password})
+
+print("user_value: ", users)
 #=====================================================================
 app = Flask(__name__)
 
@@ -29,16 +45,31 @@ app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 
 # Thiết lập tên người sử dụng và mật khẩu
-users = {
-	'mailong': '1234',
-	'user2': 'password2'
-}
+# users = {
+# 	'mailong': '1234',
+# 	'user2': 'password2'
+# }
 
 # Tới trong login
 @app.route('/')
 def view_form():
-	return render_template('register.html')
+	return render_template('first_page.html')
 
+@app.route('/login-rq')
+def login_rq():
+	return redirect(url_for('login'))
+
+@app.route('/login')
+def login():
+	return render_template('login.html')
+
+@app.route('/register-rq')
+def register_rq():
+	return redirect(url_for('register'))
+
+@app.route('/register')
+def register():
+	return render_template('register.html')
 
 @app.route('/handle_get', methods=['GET'])
 def handle_get():
@@ -61,16 +92,15 @@ def handle_post():
 	if request.method == 'POST':
 		username = request.form['username']
 		password = request.form['password']
-		print(username, password)
-		if username in users and users[username] == password:
-			return render_template('test_data.html', documents = documents)
-		else:
-			return render_template('register.html',error=error)
-	else:
-		return render_template('register.html')
+		
+		if username != "" and password != "":
+			add_user = {"user" : username, "password":password}
+			X = mycol_2.insert_one(add_user)
+			return render_template('index.html')
 
-
-
+		else: 
+			return render_template('register.html')
+		
 #==================================================================
 @app.route('/add_task', methods=['POST'])
 def add_task():

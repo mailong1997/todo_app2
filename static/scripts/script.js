@@ -5,19 +5,37 @@ const todoList = document.getElementById("todoList");
 const todoCount = document.getElementById("todoCount");
 const addButton = document.querySelector(".btn");
 const deleteButton = document.getElementById("deleteButton");
+// ---------------------------------------------------------
+const loginButton = document.getElementById("login-btn");
+
 
 // Initialize
 document.addEventListener("DOMContentLoaded", function () {
-  addButton.addEventListener("click", addTask);
-  todoInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      event.preventDefault(); // Prevents default Enter key behavior
-      addTask();
-    }
-  });
-  deleteButton.addEventListener("click", deleteAllTasks);
-  displayTasks();
+  // addButton.addEventListener("click", addTask);
+  // todoInput.addEventListener("keydown", function (event) {
+  //   if (event.key === "Enter") {
+  //     event.preventDefault(); // Prevents default Enter key behavior
+  //     addTask();
+  //   }
+  // });
+  // deleteButton.addEventListener("click", deleteAllTasks);
+  loginButton.addEventListener('click',login);
+  // displayTasks();
 });
+
+function login(){
+  fetch('/login', {
+    method: 'POST'
+  })
+  .then(response => response.text())
+  .then(data => {
+    window.location.href = "/login";
+    console.log(data);
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+}
 
 function addTask() {
   const newTask = todoInput.value.trim();
