@@ -13,15 +13,12 @@ fetch('/get_data')
   .then(data => {
     // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
     // Hiển thị ra màn hình
-    setTodo(3)
     displayTasks(data)
     console.log(data);
   })
   .catch(error => {
     console.error('Error:', error);
   });
-
-  console.log("getToDo: " + getTodo())
 
 // Initialize
 document.addEventListener("DOMContentLoaded", function () {
