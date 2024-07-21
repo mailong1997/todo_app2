@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>About me</title>
+        <link rel="stylesheet" href="test.css">
+    </head>
+    <body>
+        <section id = 'bodySection'>
+            <h1>ToDo List</h1>
+            <div id="time">
+            </div>
+                <label for="Start-day">Start: </label>
+                <input type="date" id="Start-day">
+                <label for="End-day">End: </label>
+                <input type="date" id="End-day">
+            <div id="contain-input">
+                <input type="text" id="Newtask" class="item" placeholder="New Task">
+                <div id="contain-button"><button class="item" id="Add" onclick="addd()">Add</button></div>
+            </div>
+            <div id = "scroll">
+            <table id = 'taskTable'>
+                <thead id = 'taskHead'>
+                    <tr>
+                        <th>No.</th>
+                        <th>Check</th>
+                        <th>Todo Item</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                
+                    <tbody id = 'taskList'>
+                    </tbody>
+            </table>
+        </div>
+        </section>
+        <script src="todolist.js"></script>
+    </body>
+</html>

@@ -1,41 +1,41 @@
 // Retrieve todo from local storage or initialize an empty array
-let todo = JSON.parse(localStorage.getItem("todo")) || [];
+// let todo = JSON.parse(localStorage.getItem("todo")) || [];
 const todoInput = document.getElementById("todoInput");
 const todoList = document.getElementById("todoList");
 const todoCount = document.getElementById("todoCount");
 const addButton = document.querySelector(".btn");
 const deleteButton = document.getElementById("deleteButton");
 // ---------------------------------------------------------
-const loginButton = document.getElementById("login-btn");
 
-
-// Initialize
-document.addEventListener("DOMContentLoaded", function () {
-  // addButton.addEventListener("click", addTask);
-  // todoInput.addEventListener("keydown", function (event) {
-  //   if (event.key === "Enter") {
-  //     event.preventDefault(); // Prevents default Enter key behavior
-  //     addTask();
-  //   }
-  // });
-  // deleteButton.addEventListener("click", deleteAllTasks);
-  loginButton.addEventListener('click',login);
-  // displayTasks();
-});
-
-function login(){
-  fetch('/login', {
-    method: 'POST'
-  })
-  .then(response => response.text())
+// Lấy data 
+fetch('/get_data')
+  .then(response => response.json())
   .then(data => {
-    window.location.href = "/login";
+    // Chuyển đổi chuỗi JSON thành đối tượng JavaScript
+    // Hiển thị ra màn hình
+    setTodo(3)
+    displayTasks(data)
     console.log(data);
   })
   .catch(error => {
-      console.error('Error:', error);
+    console.error('Error:', error);
   });
-}
+
+  console.log("getToDo: " + getTodo())
+
+// Initialize
+document.addEventListener("DOMContentLoaded", function () {
+  addButton.addEventListener("click", addTask);
+  todoInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Prevents default Enter key behavior
+      addTask();
+    }
+  });
+  deleteButton.addEventListener("click", deleteAllTasks);
+  // displayTasks();
+});
+
 
 function addTask() {
   const newTask = todoInput.value.trim();
@@ -56,11 +56,12 @@ function addTask() {
     todo.push({ text: newTask, disabled: false });
     saveToLocalStorage();
     todoInput.value = "";
-    displayTasks();
+    // displayTasks();
   }
 }
 
-function displayTasks() {
+function displayTasks(todo) {
+  // ----------------------------------------------------------------------------------
   todoList.innerHTML = "";
   todo.forEach((item, index) => {
     const p = document.createElement("p");
@@ -97,20 +98,20 @@ function editTask(index) {
       todo[index].text = updatedText;
       saveToLocalStorage();
     }
-    displayTasks();
+    // displayTasks();
   });
 }
 
 function toggleTask(index) {
   todo[index].disabled = !todo[index].disabled;
   saveToLocalStorage();
-  displayTasks();
+  // displayTasks();
 }
 
 function deleteAllTasks() {
   todo = [];
   saveToLocalStorage();
-  displayTasks();
+  // displayTasks();
 }
 
 function saveToLocalStorage() {

@@ -100,6 +100,7 @@ def handle_post():
 
 		else: 
 			return render_template('register.html')
+	return render_template('register.html')
 		
 #==================================================================
 @app.route('/add_task', methods=['POST'])
